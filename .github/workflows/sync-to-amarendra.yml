@@ -3,7 +3,7 @@ name: Sync Nhealth to Amarendra
 on:
   push:
     branches:
-      - main  # Mee main branch name 'master' aithe 'master' ani marchandi
+      - main
 
 jobs:
   git-sync:
@@ -18,6 +18,6 @@ jobs:
       - name: Push to Amarendra GitHub
         uses: repo-sync/github-sync@v2
         with:
-          destination_repo: "https://github.com/amarendra-username/amarendra-repo-name.git"
+          destination_repo: "https://github.com/amarendrai443/repo-name.git"
           destination_branch: "main"
-          github_token: ${{ secrets.AMARENDRA_PAT }}
+          github_token: ${{ secrets.AMARENDRAI443_PAT }}
