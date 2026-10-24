@@ -11,13 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Push to Amarendra GitHub
-        uses: repo-sync/github-sync@v2
-        with:
-          destination_repo: "https://github.com/amarendrai443/repo-name.git"
-          destination_branch: "main"
-          github_token: ${{ secrets.AMARENDRAI443_PAT }}
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git remote add amarendra https://x-access-token:${{ secrets.AMARENDRAI443_PAT }}@github.com/amarendrai443/nhealthsync.git
+          git push amarendra main --force
