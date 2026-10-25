@@ -4,10 +4,10 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   git-sync:
-    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -15,9 +15,11 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Push to Amarendra GitHub
+      - name: Push to Target Repository
+        env:
+          PAT_TOKEN: ${{ secrets.AMARENDRAI443_PAT }}
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git remote add amarendra https://x-access-token:${{ secrets.AMARENDRAI443_PAT }}@github.com/amarendrai443/nhealthsync.git
-          git push amarendra main --force
+          git remote add target https://amarendrai443:${PAT_TOKEN}@github.com/amarendrai443/nhealthsync.git
+          git push target main --force
